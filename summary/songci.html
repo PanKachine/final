@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="songci.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="question.css">
+
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+
+<div class="box">
+    <div class="box1">
+        <div class="box2">
+            <div class="jazzing">
+                <p id="jiangnan">念奴娇·水乡霜落</p><br>
+                <p>宋·范成大</p>
+                <p>    水乡霜落，望西山一寸，修眉横碧。南浦潮生帆影去，日落天青江白。万里浮云，被风吹散，又被风吹积。尊前歌罢，满空凝淡寒色。 </p>
+                <p>    人世会少离多，都来名利，似蝇头蝉翼。赢得长亭车马路，千古羁愁如织。我辈情钟，匆匆相见，一笑真难得。明年谁健，梦魂飘荡南北。</p>
+
+            </div>
+        </div>
+        <div  id="t_1" class="box3 show"   style="height:800px;width:650px;font-size:28px;overflow:auto;white-space:normal;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div id="app" style="margin: 20px;">
+                <br><br>
+               <p>范成大素有文名，尤工于诗。他从江西派入手，后学习中、晚唐诗，继承白居易、王建、张籍等诗人新乐府的现实主义精神，终于自成一家。</p><br>
+                <p>风格平易浅显、清新妩媚。诗题材广泛，以反映农村社会生活内容的作品成就最高。</p><br>
+                <p>与杨万里、陆游、尤袤合称南宋“中兴四大诗人”。其作品在南宋末年即产生了显著的影响，到清初影响更大，有“家剑南而户石湖”的说法。</p><br>
+                <p>著有《石湖集》、《揽辔录》、《吴船录》、《吴郡志》、《桂海虞衡志》等。</p><br>
+            </div>
+
+
+
+        </div>
+        <div id="t_2" class="box3 hide"   style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+           <br><br><br><br><br><p>
+               水村冻伤，望西山一寸，修眉青碧。</p><br>
+            <p> 南浦潮生帆影，夕阳蓝江白。千万里浮云，被风吹散，被风堆积。让我们在你面前唱歌。空气很冷。世界将会遥远。名声和财富，犹如苍蝇和蝉的翅膀。</p><br>
+            <p>赢了长汀车路，千百年来一直是一个挥之不去的烦恼。我们彼此相爱。匆匆见面是很难得的。谁明年会健康?梦想的灵魂将飘浮南北。</p><br>
+            <p> 今夕何朝，披岫幌、云关重启。引冰壶、素空似洗。卷帘中、＿枕上，月星浮水。天镜夜明，半窗万里。 盼庭柯、都老大，树犹如此。六年前、转头未几。唤邻翁、来话旧，同＿新蚁。秉烛夜阑，又疑梦里。</p><br>
+
+        </div>
+
+        <div id="t_3" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <p style="height:300px;margin:40px 0px -209px 130px;">根据故事 绘画你心目中的江南景</p>
+            <canvas id="display" height="650px" width="650px" style="background-color: rgba(255,255,255,0);"></canvas>
+            <script>
+                class Track {
+                    constructor(){
+                        this.content = []
+                    }
+                    getTrack(){
+                        return this.content
+                    }
+                    clearTrack(){
+                        this.content = []
+                    }
+                    pushItem(item){
+                        this.content.push(item)
+                    }
+                    getNewestItem(){
+                        return this.content.length!==0?this.content[this.content.length-1]:null
+                    }
+                }
+                class Drawpaper {
+                    constructor(){
+                        this.el = document.createElement("canvas")
+                    }
+                }
+                let cav = document.getElementById('display')
+                console.log(cav)
+                let context_2d = cav.getContext("2d");
+                let track = new Track
+                let defaultPenconf = {
+                    size:9,
+                    color:'black',
+                    bgcolor:'black'
+                }
+                let canvasconf = {
+                    height:600,
+                    width:600,
+                    bgcolor:'black'
+                }
+                setConfig (context_2d,defaultPenconf)
+                function setConfig (ctx,penconf) {
+                    ctx.lineJoin="round";
+                    ctx.lineCap="round";
+                    ctx.strokeStyle=penconf.color;
+                    ctx.fillStyle=penconf.bgcolor;
+                    ctx.lineWidth=penconf.size;
+                }
+                function initListener (cav) {
+                    cav.addEventListener('mousemove',penmove)
+                    document.addEventListener('mouseup',penup)
+                    cav.addEventListener('mouseleave',penleave)
+                }
+                function clearListener (cav) {
+                    cav.removeEventListener('mousemove',penmove)
+                    document.removeEventListener('mouseup',penup)
+                    cav.removeEventListener('mouseleave',penleave)
+                }
+                function pendown (e) {
+                    if(e.button!==0){
+                        return
+                    }
+                    console.log(1)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    drawRound (context_2d,mousePosition)
+                    track.pushItem(mousePosition)
+                    initListener (cav)
+                }
+                function penmove(e) {
+                    console.log(2)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    track.pushItem (mousePosition)
+                }
+
+                function penup (e) {
+                    console.log(3)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+
+                cav.addEventListener('mousedown',pendown)
+                function penleave (e) {
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+                function drawRound (cavctx,position={}) {
+                    let {x=0,y=0} = position
+                    cavctx.beginPath();
+                    let {size} = defaultPenconf
+                    let r = size/2
+                    cavctx.arc(x,y,r,0,2*Math.PI)
+                    cavctx.closePath();
+                    cavctx.fill();
+                }
+                function draw (cavctx,position={}) {//画布对象，位置，笔刷设置
+                    let {x=0,y=0} = position
+                    let prevPosition = track.getNewestItem()
+                    cavctx.beginPath();
+                    cavctx.moveTo(prevPosition.x,prevPosition.y)
+                    cavctx.lineTo(x,y);
+                    cavctx.closePath();
+                    cavctx.stroke();
+                }
+            </script>
+        </div>
+
+
+        <div id="t_4" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div class="testContainer">
+                <h3>在线答题</h3>
+                <div class="testHeader">
+
+                    <div class="testRight" id="countdown-11"></div>
+                </div>
+                <ul class="testContent">
+                </ul>
+                <div onclick="submitAnswer()" id="submitBtn">提交</div>
+            </div>
+            <script src="jquery.min.js"></script>
+
+            <!--    <script src="jquery.time-to.js"></script>-->
+            <script src="songciti.js"></script>
+        </div>
+    </div>
+
+</div>
+
+<nav class="shell">
+    <ul   id="tab_nav" class="buttons">
+        <li id="tab_content1" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课前预习</li>
+        <li id="tab_content2" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂学习</a></li>
+        <li id="tab_content3" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂回顾</a></li>
+        <li id="tab_content4" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 知识习题</a></li>
+    </ul>
+</nav>
+<div class="fanhui" onclick="location.href='ditu2.html'">
+    <img src="img/fanhui.png">
+</div>
+<style lang="scss">
+    .el-radio__label{
+        width:600px;
+        white-space:normal;
+        font-size: 24px;
+        line-height: 1;
+    }
+    .el-radio__inner{
+        width: 20px;
+        height: 20px;
+    }
+</style>
+</body>
+<script src="explain.js"></script>
+<script src="tangshi.js"></script>
+</html>

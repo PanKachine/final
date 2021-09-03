@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+   margin: 0;
+   padding: 0;
+}
+.testContainer{
+    width: 60%;
+    /* height: 400px; */
+
+    margin: 30px auto;
+    min-width: 600px;
+}
+.testContainer h3{
+    text-align: center;
+    margin: 10px 0px;
+    font-size: 32px;
+}
+.testHeader{
+    width: 100%;
+    height: 0px;
+    position: relative;
+    line-height: 30px;
+
+}
+.testHeader>div{
+    position: absolute;
+}
+/*
+.testLeft{
+    
+    left: 10px;
+}
+*/
+.testRight{
+  
+    right: 10px;
+}
+.testContent{
+    list-style: none;
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 10px;
+    font-size: 24px;
+    /* height: 300px; */
+    /* border: 1px solid #eee; */
+}
+.testContent .testItem{
+    width: 100%;
+    background: aliceblue;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    
+}
+.testContent .testItem .problem{
+    margin-bottom: 6px;
+    color: brown;
+    font-size: 28px;
+}
+.selectItem>div{
+    margin: 4px 0px;
+    font-size: 24px;
+    line-height: 2;
+}
+.selectItem input{
+    margin-right: 8px;
+}
+#submitBtn{
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #3385ff;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    margin: 8px auto;
+}

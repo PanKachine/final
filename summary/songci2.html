@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="songci2.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="question.css">
+
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+
+<div class="box">
+    <div class="box1">
+        <div class="box2">
+            <div class="jazzing">
+                <p id="jiangnan">菩萨蛮</p>
+                <p>唐·韦庄</p>
+                <p>人人尽说江南好，游人只合江南老。春水碧于天，画船听雨眠。圹边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。 </p>
+                <p>圹边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。</p>
+
+            </div>
+        </div>
+        <div  id="t_1" class="box3 show"   style="height:800px;width:650px;font-size:28px;overflow:auto;white-space:normal;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div id="app" style="margin: 20px;">
+                <br><br>
+                <p>游人只合江南老:这里指飘泊江南的人，即作者自谓。</p><br>
+                <p> 只合:只应。江南好:白居易《忆江南》词首句为“江南好”。碧于天:一片碧绿，胜过天色。</p><br>
+                <p> 坤边:指酒家。掉，旧时酒店用土砌成酒瓮卖酒的地方。《史记·司马相如列传》记载，司马相如妻卓文君长得很美，曾当圹卖酒:“买一酒舍沽就，而令文君当圹。”</p><br>
+                <p> 皓腕凝霜雪:形容双臂洁白如雪。凝霜雪，像霜雪凝聚那样洁白。</p><br>
+                <p>  未老莫还乡，还乡须断肠:年尚未老，且在江南行乐。如还乡离开江南，当使人悲痛不已。须:必定，肯定。
+                </p><br>
+            </div>
+
+
+
+        </div>
+        <div id="t_2" class="box3 hide"   style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <br><br><br>
+            <p>
+                根据中国古典文学专家叶嘉莹教授的研究，韦庄的《菩萨蛮五首》词中的“江南"，都是确指的江南
+                之地，并非指蜀地。这组词创作于韦庄晚年寓居蜀地时期，是作者为回忆江南旧游而作。本首词就是组诗中的第二首。</p><br>
+            <p>韦庄出身京兆韦氏东眷逍遥公房。早年屡试不第，后因黄巢起义作《秦妇吟》。乾宁元年（公元894年），再试时进士及第，
+                出任校书郎。乾宁四年（公元897年），以判官职随谏议大夫李询入蜀宣谕，归朝后升任左补阙。天复元年（公元901年）
+                ，入蜀为王建掌书记，自此终身仕蜀。天祐四年（公元907年），朱全忠灭唐建梁，韦庄劝王建称帝，任左散骑常侍，
+                判中书门下事，定开国制度。
+            </p>
+        </div>
+
+        <div id="t_3" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <p style="height:300px;margin:40px 0px -209px 130px;">根据故事 绘画你心目中的江南景</p>
+            <canvas id="display" height="650px" width="650px" style="background-color: rgba(255,255,255,0);"></canvas>
+            <script>
+                class Track {
+                    constructor(){
+                        this.content = []
+                    }
+                    getTrack(){
+                        return this.content
+                    }
+                    clearTrack(){
+                        this.content = []
+                    }
+                    pushItem(item){
+                        this.content.push(item)
+                    }
+                    getNewestItem(){
+                        return this.content.length!==0?this.content[this.content.length-1]:null
+                    }
+                }
+                class Drawpaper {
+                    constructor(){
+                        this.el = document.createElement("canvas")
+                    }
+                }
+                let cav = document.getElementById('display')
+                console.log(cav)
+                let context_2d = cav.getContext("2d");
+                let track = new Track
+                let defaultPenconf = {
+                    size:9,
+                    color:'black',
+                    bgcolor:'black'
+                }
+                let canvasconf = {
+                    height:600,
+                    width:600,
+                    bgcolor:'black'
+                }
+                setConfig (context_2d,defaultPenconf)
+                function setConfig (ctx,penconf) {
+                    ctx.lineJoin="round";
+                    ctx.lineCap="round";
+                    ctx.strokeStyle=penconf.color;
+                    ctx.fillStyle=penconf.bgcolor;
+                    ctx.lineWidth=penconf.size;
+                }
+                function initListener (cav) {
+                    cav.addEventListener('mousemove',penmove)
+                    document.addEventListener('mouseup',penup)
+                    cav.addEventListener('mouseleave',penleave)
+                }
+                function clearListener (cav) {
+                    cav.removeEventListener('mousemove',penmove)
+                    document.removeEventListener('mouseup',penup)
+                    cav.removeEventListener('mouseleave',penleave)
+                }
+                function pendown (e) {
+                    if(e.button!==0){
+                        return
+                    }
+                    console.log(1)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    drawRound (context_2d,mousePosition)
+                    track.pushItem(mousePosition)
+                    initListener (cav)
+                }
+                function penmove(e) {
+                    console.log(2)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    track.pushItem (mousePosition)
+                }
+
+                function penup (e) {
+                    console.log(3)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+
+                cav.addEventListener('mousedown',pendown)
+                function penleave (e) {
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+                function drawRound (cavctx,position={}) {
+                    let {x=0,y=0} = position
+                    cavctx.beginPath();
+                    let {size} = defaultPenconf
+                    let r = size/2
+                    cavctx.arc(x,y,r,0,2*Math.PI)
+                    cavctx.closePath();
+                    cavctx.fill();
+                }
+                function draw (cavctx,position={}) {//画布对象，位置，笔刷设置
+                    let {x=0,y=0} = position
+                    let prevPosition = track.getNewestItem()
+                    cavctx.beginPath();
+                    cavctx.moveTo(prevPosition.x,prevPosition.y)
+                    cavctx.lineTo(x,y);
+                    cavctx.closePath();
+                    cavctx.stroke();
+                }
+            </script>
+        </div>
+
+
+        <div id="t_4" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div class="testContainer">
+                <h3>在线答题</h3>
+                <div class="testHeader">
+
+                    <div class="testRight" id="countdown-11"></div>
+                </div>
+                <ul class="testContent">
+                </ul>
+                <div onclick="submitAnswer()" id="submitBtn">提交</div>
+            </div>
+            <script src="jquery.min.js"></script>
+
+            <!--    <script src="jquery.time-to.js"></script>-->
+            <script src="songciti.js"></script>
+        </div>
+    </div>
+
+</div>
+
+<nav class="shell">
+    <ul   id="tab_nav" class="buttons">
+        <li id="tab_content1" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课前预习</li>
+        <li id="tab_content2" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂学习</a></li>
+        <li id="tab_content3" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂回顾</a></li>
+        <li id="tab_content4" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 知识习题</a></li>
+    </ul>
+</nav>
+<div class="fanhui" onclick="location.href='ditu2.html'">
+    <img src="img/fanhui.png">
+<style lang="scss">
+    .el-radio__label{
+        width:600px;
+        white-space:normal;
+        font-size: 24px;
+        line-height: 1;
+    }
+    .el-radio__inner{
+        width: 20px;
+        height: 20px;
+    }
+</style>
+</body>
+<script src="explain.js"></script>
+<script src="tangshi.js"></script>
+</html>

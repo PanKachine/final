@@ -1,0 +1,75 @@
+.box1{
+    width:1300px;
+    height:850px;
+    border: #bfbfbf solid;
+    margin:15px 0px 0px 200px;
+    border-radius:10px;
+    background-image: url("img/jnn.jpg");
+    background-size:100% 100%;
+}
+.box2{
+    background-color: rgba(255 , 255 ,255 , 0.5);
+    float:left;
+    width:550px;
+    height:800px;
+    margin:20px;
+    border: rgba(82, 41, 22, 0) solid;
+    text-align: center;
+    border-radius:30px;
+}
+.box3{
+    background-color: rgba(255 , 255 ,255 , 0.5);
+    float:left;
+    margin:20px ;
+    border:rgba(82, 41, 22, 0) solid;
+    border-radius:30px;
+
+}
+.box2 p{
+    font-family:STXinwei;
+    font-size: 30px;
+    line-height:60px;
+    letter-spacing:14px;
+}
+.box3 p{
+
+    font-size: 24px;
+    line-height:48px;
+
+}
+.jazzing{
+    margin: 50px auto;
+}
+#jiangnan{
+    font-size: 48px;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("img/bg.png");
+}
+
+.show{
+    display:block;
+}
+.hide{
+    display:none;
+}
+#tab_content{overflow:hidden;}
+
+div.fanhui img:hover{
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    z-index: 9999;
+}
+.fanhui{
+    position: absolute;
+    text-align:center;
+    top: 80%;
+    left: 5%;
+    width: 1%;
+    cursor: pointer;
+}
