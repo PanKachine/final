@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="explain.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="question.css">
+
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+
+<div class="box">
+    <div class="box1">
+        <div class="box2">
+            <div class="jazzing">
+            <p id="jiangnan">江南弄</p>
+            <p>唐·李贺</p>
+            <p>江中<span id="lvwu">绿雾</span>起凉波</p>
+            <p>天上<span id="dieyan">叠巘</span>红嵯峨</p>
+            <p>水风浦云生老竹</p>
+            <p>渚暝蒲帆如一幅</p>
+            <p>鲈鱼千头酒百斛</p>
+            <p>酒中倒卧南山绿</p>
+            <p>吴歈越吟未终曲</p>
+            <p>江上团团贴寒玉</p>
+            </div>
+        </div>
+        <div  id="t_1" class="box3 show"   style="height:800px;width:650px;font-size:28px;overflow:auto;white-space:normal;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div id="app" style="margin: 20px;">
+                <br><br>
+                <div> &nbsp &nbsp 下列对这首诗的理解和分析列对这首诗的理解和分析，不正确的一项是______ <span v-show="Right">正确答案是C</span></div>
+                <el-radio-group v-model="radio" @change="Console" >
+                    <el-radio :label="3" style="font-size: 60px">A.“巘”比喻云霞，“叠”“红”“嵯峨”三个词从数量、色彩和形状方面对“巘”作了描绘。</el-radio>
+                    <br>
+                    <el-radio :label="6" style="font-size: 60px">B.颔联写水上的微风、岸边的云霭等仿佛从竹林中“生”出，表现了自然景物的变化。</el-radio>
+                    <br>
+                    <el-radio :label="9" style="font-size: 60px">C.颈联的前一句化用晋朝张翰的典故，表达了诗人也想弃官归隐的念头。<span class="el-icon-check"
+                                                                                                  v-show="Check"></span></el-radio>
+                    <br>
+                    <el-radio :label="12" style="font-size: 60px">D.全诗以时间为序，描绘了江边的诸多景物，表现了大自然昼夜转换之际的奇妙景观。</el-radio>
+                </el-radio-group>
+            </div>
+
+            <script type="text/javascript">
+                new Vue({
+                    el: '#app',
+                    data() {
+                        return {
+                            radio: '',
+                            Right: false,
+                            Check: false
+                        };
+                    },
+                    methods: {
+                        Console(val) {
+                            if (val == 9) {
+                                this.Check = true;
+                                this.Right = false;
+                            } else {
+                                this.Right = true;
+                                this.Check = false;
+                            }
+                        }
+                    }
+                })
+            </script>
+
+        </div>
+        <div id="t_2" class="box3 hide"   style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <br>
+            <p id="p1"> &nbsp  &nbsp 江南弄：乐府诗清商曲辞题名。《乐府解题》说：“江南古辞，盖美芳晨丽景，嬉游得时。”</p>
+            <br>
+            <p id="p2"> &nbsp  &nbsp 绿雾：青茫茫的雾气。团雾从碧绿的江波中升起，故称“绿雾”。宋苏轼《寿星院寒碧轩》诗：“纷纷苍雪落夏簟，冉冉绿雾沾人衣。”凉波：清凉的水面。宋晏殊《浣溪沙》词：“小阁重帘有燕过，晚花红片落庭莎，曲阑干影入凉波。”</p>
+            <br>
+            <p id="p3"> &nbsp  &nbsp 叠巘（yǎn）：本指层叠的山峦。南朝宋谢灵运《晚出西射堂》诗：“连障叠巘崿，青翠杳深沉。”此形容晚霞。嵯峨（cuó é）：山峰高峻貌。</p>
+            <br>
+            <p> &nbsp  &nbsp “水风”句：言竹木与江水相连，仿佛风和云都是从竹林中生出来的。</p>
+            <br>
+            <p> &nbsp  &nbsp “渚暝”句：写黄昏时渡口众多的帆船相连成片，如一幅图画。渚：水中的小块陆地。暝：昏暗。蒲帆：指用蒲草织成的船帆。</p>
+            <br>
+            <p> &nbsp  &nbsp 鲈（lú）鱼：一种味道鲜美的鱼。江南鲈鱼自魏晋以来就为人所珍视。百斛（hú）：泛指多斛。斛：量具名。古以十斗为斛，南宋末改为五斗。</p>
+            <br>
+            <p> &nbsp  &nbsp 酒中倒卧：饮酒中间就醉倒了。酒中：指酒喝到一半。倒卧：横卧，横倒。南山绿：此用陶渊明《饮酒》诗“悠然见南山”之意。</p>
+            <br>
+            <p> &nbsp  &nbsp 吴歈（yú）越吟：指江南地方歌曲。吴歈：即吴歌。越吟：越歌。左思《吴都赋》：“荆艳楚舞，吴歈越吟。”</p>
+            <br>
+            <p> &nbsp  &nbsp 贴寒玉：喻初升之月映在江面上。寒玉：比喻清冷雅洁的东西，此喻月。宋吕渭老《念奴娇·赠希文宠姬》词：“暮云收尽，霁霞明高拥一轮寒玉。”</p>
+            <br>
+        </div>
+
+            <div id="t_3" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+                <p style="height:300px;margin:40px 0px -209px 130px;">根据故事 绘画你心目中的江南景</p>
+                <canvas id="display" height="650px" width="650px" style="background-color: rgba(255,255,255,0);"></canvas>
+                <script>
+                    class Track {
+                        constructor(){
+                            this.content = []
+                        }
+                        getTrack(){
+                            return this.content
+                        }
+                        clearTrack(){
+                            this.content = []
+                        }
+                        pushItem(item){
+                            this.content.push(item)
+                        }
+                        getNewestItem(){
+                            return this.content.length!==0?this.content[this.content.length-1]:null
+                        }
+                    }
+                    class Drawpaper {
+                        constructor(){
+                            this.el = document.createElement("canvas")
+                        }
+                    }
+                    let cav = document.getElementById('display')
+                    console.log(cav)
+                    let context_2d = cav.getContext("2d");
+                    let track = new Track
+                    let defaultPenconf = {
+                        size:9,
+                        color:'black',
+                        bgcolor:'black'
+                    }
+                    let canvasconf = {
+                        height:600,
+                        width:600,
+                        bgcolor:'black'
+                    }
+                    setConfig (context_2d,defaultPenconf)
+                    function setConfig (ctx,penconf) {
+                        ctx.lineJoin="round";
+                        ctx.lineCap="round";
+                        ctx.strokeStyle=penconf.color;
+                        ctx.fillStyle=penconf.bgcolor;
+                        ctx.lineWidth=penconf.size;
+                    }
+                    function initListener (cav) {
+                        cav.addEventListener('mousemove',penmove)
+                        document.addEventListener('mouseup',penup)
+                        cav.addEventListener('mouseleave',penleave)
+                    }
+                    function clearListener (cav) {
+                        cav.removeEventListener('mousemove',penmove)
+                        document.removeEventListener('mouseup',penup)
+                        cav.removeEventListener('mouseleave',penleave)
+                    }
+                    function pendown (e) {
+                        if(e.button!==0){
+                            return
+                        }
+                        console.log(1)
+                        let mousePosition = {x:e.offsetX,y:e.offsetY}
+                        drawRound (context_2d,mousePosition)
+                        track.pushItem(mousePosition)
+                        initListener (cav)
+                    }
+                    function penmove(e) {
+                        console.log(2)
+                        let mousePosition = {x:e.offsetX,y:e.offsetY}
+                        draw (context_2d,mousePosition)
+                        track.pushItem (mousePosition)
+                    }
+
+                    function penup (e) {
+                        console.log(3)
+                        clearListener (cav)
+                        track.clearTrack ()
+                    }
+
+                    cav.addEventListener('mousedown',pendown)
+                    function penleave (e) {
+                        let mousePosition = {x:e.offsetX,y:e.offsetY}
+                        draw (context_2d,mousePosition)
+                        clearListener (cav)
+                        track.clearTrack ()
+                    }
+                    function drawRound (cavctx,position={}) {
+                        let {x=0,y=0} = position
+                        cavctx.beginPath();
+                        let {size} = defaultPenconf
+                        let r = size/2
+                        cavctx.arc(x,y,r,0,2*Math.PI)
+                        cavctx.closePath();
+                        cavctx.fill();
+                    }
+                    function draw (cavctx,position={}) {//画布对象，位置，笔刷设置
+                        let {x=0,y=0} = position
+                        let prevPosition = track.getNewestItem()
+                        cavctx.beginPath();
+                        cavctx.moveTo(prevPosition.x,prevPosition.y)
+                        cavctx.lineTo(x,y);
+                        cavctx.closePath();
+                        cavctx.stroke();
+                    }
+                </script>
+            </div>
+
+
+        <div id="t_4" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div class="testContainer">
+                <h3>在线答题</h3>
+                <div class="testHeader">
+
+                    <div class="testRight" id="countdown-11"></div>
+                </div>
+                <ul class="testContent">
+                </ul>
+                <div onclick="submitAnswer()" id="submitBtn">提交</div>
+            </div>
+            <script src="jquery.min.js"></script>
+
+            <!--    <script src="jquery.time-to.js"></script>-->
+            <script src="index.js"></script>
+        </div>
+        </div>
+
+</div>
+
+<nav class="shell">
+    <ul   id="tab_nav" class="buttons">
+        <li id="tab_content1" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课前预习</li>
+        <li id="tab_content2" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂学习</a></li>
+        <li id="tab_content3" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂回顾</a></li>
+        <li id="tab_content4" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 知识习题</a></li>
+    </ul>
+</nav>
+<div class="fanhui" onclick="location.href='ditu.html'">
+    <img src="img/fanhui.png">
+</div>
+
+<style lang="scss">
+    .el-radio__label{
+        width:600px;
+        white-space:normal;
+        font-size: 24px;
+        line-height: 1;
+    }
+    .el-radio__inner{
+       width: 20px;
+        height: 20px;
+    }
+</style>
+</body>
+<script src="explain.js"></script>
+<script src="tangshi.js"></script>
+</html>
