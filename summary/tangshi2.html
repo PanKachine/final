@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="tangshi2.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="question.css">
+
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+
+<div class="box">
+    <div class="box1">
+        <div class="box2">
+            <div class="jazzing">
+                <p id="jiangnan">晓出净慈寺送林子方</p>
+                <p>宋·杨万里</p>
+                <p>毕竟西湖六月中</p>
+                <p>风光不与四时同</p>
+                <p>接天莲叶无穷碧</p>
+                <p>映日荷花别样红</p>
+            </div>
+        </div>
+        <div  id="t_1" class="box3 show"   style="height:800px;width:650px;font-size:28px;overflow:auto;white-space:normal;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div id="app" style="margin: 20px;">
+                <br><br>
+                <p>杨万里字廷秀，号诚斋。杨万里一生作诗两万多首，传世作品有四千二百首，被誉为一代诗宗。</p><br>
+                <p>他创造了语言浅近明白、清新自然，富有幽默情趣的“诚斋体”。</p><br>
+                <p>杨万里诗歌大多描写自然景物，且以此见长，也有不少篇章反映民间疾苦抒发爱国感情；语言浅近明白，清新自然，富有幽默情趣；称为"诚斋体"。
+                    本诗创造背景是林子方与诗人志同道合、互视对方为知己。</p><br>
+                <p>后来，林子方被调离皇帝身边，赴福州任职，职位知福州。林子方甚是高兴，自以为是仕途升迁。杨万里则不这么想，送林子方赴福州时，写下此诗，劝告林子方不要去福州。
+                </p><br>
+            </div>
+
+
+        </div>
+        <div id="t_2" class="box3 hide"   style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+           <p>
+               六月里西湖的风光景色到底和其他时节的不一样。</p><br>
+            <p> 那密密层层的荷叶铺展开去，与蓝天相连接，一片无边无际的青翠碧绿；</p><br>
+            <p>那亭亭玉立的荷花绽蕾盛开，在阳光辉映下，显得格外的鲜艳娇红。
+           </p>
+            <br>
+            <p>
+                晓出：太阳刚刚升起。</p><br>
+            <p> 净慈寺：全名“净慈报恩光孝禅寺”，与灵隐寺为杭州西湖南北山两大著名佛寺。</p><br>
+            <p> 林子方：作者的朋友，官居直阁秘书。</p><br>
+            <p> 毕竟： 到底。</p><br>
+            <p> 六月中：六月中旬。</p><br>
+            <p> 四时：春夏秋冬四个季节。在这里指六月以外的其他时节。同：相同。</p><br>
+            <p> 接天：像与天空相接。</p><br>
+            <p> 无穷：无边无际。无穷碧：因莲叶面积很广，似与天相接，故呈现无穷的碧绿。</p><br>
+            <p> 映日：指阳光。映照着日光。</p><br>
+            <p> 别样：宋代俗语，特别，不一样。</p><br>
+            <p> 别样红：红得特别出色。</p><br>
+            </p>
+        </div>
+
+        <div id="t_3" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <p style="height:300px;margin:40px 0px -209px 130px;">根据故事 绘画你心目中的江南景</p>
+            <canvas id="display" height="650px" width="650px" style="background-color: rgba(255,255,255,0);"></canvas>
+            <script>
+                class Track {
+                    constructor(){
+                        this.content = []
+                    }
+                    getTrack(){
+                        return this.content
+                    }
+                    clearTrack(){
+                        this.content = []
+                    }
+                    pushItem(item){
+                        this.content.push(item)
+                    }
+                    getNewestItem(){
+                        return this.content.length!==0?this.content[this.content.length-1]:null
+                    }
+                }
+                class Drawpaper {
+                    constructor(){
+                        this.el = document.createElement("canvas")
+                    }
+                }
+                let cav = document.getElementById('display')
+                console.log(cav)
+                let context_2d = cav.getContext("2d");
+                let track = new Track
+                let defaultPenconf = {
+                    size:9,
+                    color:'black',
+                    bgcolor:'black'
+                }
+                let canvasconf = {
+                    height:600,
+                    width:600,
+                    bgcolor:'black'
+                }
+                setConfig (context_2d,defaultPenconf)
+                function setConfig (ctx,penconf) {
+                    ctx.lineJoin="round";
+                    ctx.lineCap="round";
+                    ctx.strokeStyle=penconf.color;
+                    ctx.fillStyle=penconf.bgcolor;
+                    ctx.lineWidth=penconf.size;
+                }
+                function initListener (cav) {
+                    cav.addEventListener('mousemove',penmove)
+                    document.addEventListener('mouseup',penup)
+                    cav.addEventListener('mouseleave',penleave)
+                }
+                function clearListener (cav) {
+                    cav.removeEventListener('mousemove',penmove)
+                    document.removeEventListener('mouseup',penup)
+                    cav.removeEventListener('mouseleave',penleave)
+                }
+                function pendown (e) {
+                    if(e.button!==0){
+                        return
+                    }
+                    console.log(1)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    drawRound (context_2d,mousePosition)
+                    track.pushItem(mousePosition)
+                    initListener (cav)
+                }
+                function penmove(e) {
+                    console.log(2)
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    track.pushItem (mousePosition)
+                }
+
+                function penup (e) {
+                    console.log(3)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+
+                cav.addEventListener('mousedown',pendown)
+                function penleave (e) {
+                    let mousePosition = {x:e.offsetX,y:e.offsetY}
+                    draw (context_2d,mousePosition)
+                    clearListener (cav)
+                    track.clearTrack ()
+                }
+                function drawRound (cavctx,position={}) {
+                    let {x=0,y=0} = position
+                    cavctx.beginPath();
+                    let {size} = defaultPenconf
+                    let r = size/2
+                    cavctx.arc(x,y,r,0,2*Math.PI)
+                    cavctx.closePath();
+                    cavctx.fill();
+                }
+                function draw (cavctx,position={}) {//画布对象，位置，笔刷设置
+                    let {x=0,y=0} = position
+                    let prevPosition = track.getNewestItem()
+                    cavctx.beginPath();
+                    cavctx.moveTo(prevPosition.x,prevPosition.y)
+                    cavctx.lineTo(x,y);
+                    cavctx.closePath();
+                    cavctx.stroke();
+                }
+            </script>
+        </div>
+
+
+        <div id="t_4" class="box3 hide"  style="height:800px;width:650px;overflow:auto;background-color: rgba(255 , 255 ,255 , 0.5);margin: 20px;">
+            <div class="testContainer">
+                <h3>在线答题</h3>
+                <div class="testHeader">
+
+                    <div class="testRight" id="countdown-11"></div>
+                </div>
+                <ul class="testContent">
+                </ul>
+                <div onclick="submitAnswer()" id="submitBtn">提交</div>
+            </div>
+            <script src="jquery.min.js"></script>
+
+            <!--    <script src="jquery.time-to.js"></script>-->
+            <script src="tangshiti.js"></script>
+        </div>
+    </div>
+
+</div>
+
+<nav class="shell">
+    <ul   id="tab_nav" class="buttons">
+        <li id="tab_content1" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课前预习</li>
+        <li id="tab_content2" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂学习</a></li>
+        <li id="tab_content3" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 课堂回顾</a></li>
+        <li id="tab_content4" style=" font-size: 36px;font-family:STXinwei;line-height:1.5;margin: 60px 40px;border-radius:300px;"> &nbsp 知识习题</a></li>
+    </ul>
+</nav>
+
+<div class="fanhui" onclick="location.href='ditu.html'">
+    <img src="img/fanhui.png">
+</div>
+
+<style lang="scss">
+    .el-radio__label{
+        width:600px;
+        white-space:normal;
+        font-size: 24px;
+        line-height: 1;
+    }
+    .el-radio__inner{
+        width: 20px;
+        height: 20px;
+    }
+</style>
+</body>
+<script src="explain.js"></script>
+<script src="tangshi.js"></script>
+</html>
