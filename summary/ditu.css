@@ -48,8 +48,8 @@ img{
     z-index: 80;
     width: 8%;
     height: 10%;
-    top:27%;
-    left: 40%;
+    top:28%;
+    left: 39%;
     cursor: pointer;
 }
 .img2_2{
@@ -57,8 +57,8 @@ img{
     z-index: 80;
     width: 5%;
     height: 6%;
-    top:33%;
-    left: 55%;
+    top:34%;
+    left: 52%;
     cursor: pointer;
 }
 .img2_3{
@@ -66,7 +66,7 @@ img{
     z-index: 80;
     width: 8%;
     height: 12%;
-    top:6%;
+    top:8%;
     left: 63%;
     cursor: pointer;
 }
@@ -75,16 +75,16 @@ img{
     z-index: 80;
     width: 4%;
     height: 9%;
-    top:40%;
-    left: 73%;
+    top:43%;
+    left: 68%;
     cursor: pointer;
 }
 .img2_5{
     position: absolute;
     z-index: 80;
-    width:9%;
+    width:8%;
     height: 14%;
-    top:68%;
+    top:71%;
     left: 56%;
     cursor: pointer;
 }
